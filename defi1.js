@@ -32,7 +32,7 @@ let bool = false;
 let timer = document.getElementById("tmp");
 
 
-let temps1 = 5;
+let temps1 = 10;
 
 
 let intervalle =1000;
@@ -44,7 +44,6 @@ let m = 0;
 
 
     
-
 
 
 let paraquestion = document.createElement('p');
@@ -68,34 +67,48 @@ function finDeJeu1() {
     }
 
 
+   
+}
+
+function time(){
+    if (bool == false){
+        DiminuerTemps1();
+        
+    }else{
+        temps1 = temps1
+    }
 
 }
+
+// bpause.addEventListener('click', function(){
+    
+//     if(bool==false){
+
+//         bool= true;
+//         bpause.innerHTML = 'Reprendre'
+        
+        
+
+//     }else{
+
+//         bool=false;
+//         bpause.innerHTML = 'Pause'
+        
+
+//     }
+    
+// })
 
 function fonctiontimer(){
 
     timer.innerHTML =(temps1);
 
-    setInterval(DiminuerTemps1, intervalle); // diminuer le temps à chaque seconde
+    setInterval(time, intervalle); // diminuer le temps à chaque seconde
 
 
 
 }
 
-function pause(){
-
-    if (bool == false){
-
-        bpause.innerHTML = "Pause"
-
-        fonctiontimer();
-
-    }else{
-
-        bpause.innerHTML ="Reprendre"
-
-    }
-
-}
 
 function DiminuerTemps1 (){
 
@@ -206,6 +219,10 @@ function abandonetpause(){
 
 
     document.body.appendChild(bpause);
+    bpause.innerHTML = 'Pause'
+    fonctiontimer()
+
+   
 
 }
 
@@ -213,8 +230,25 @@ function abandonetpause(){
 
 function defi1(){
 
-
     let tabrep = [];
+
+    bpause.addEventListener('click', function(){
+    
+        if(bool==false){
+    
+            bool= true;
+            bpause.innerHTML = 'Reprendre'
+            
+    
+        }else{
+    
+            bool=false;
+            bpause.innerHTML = 'Pause'
+            
+    
+        }
+        
+    })
 
 
     function reCall(){
@@ -262,7 +296,7 @@ function defi1(){
     /* Création des boutons*/
 
 
-        /* bouton abandonée et pause*/
+        /* bouton abandoner et pause*/
 
 
         
@@ -528,19 +562,9 @@ function defi1(){
 
       
 
-        bpause.addEventListener('click',function(){
-
-            if(bool==false){
-
-                bool= true;
-
-            }else{
-
-                bool=false;
-
-            }
-
-        })
+        
+        
+    
 
 
 
