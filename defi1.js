@@ -27,15 +27,15 @@ let giveUp = document.createElement('button');
 let bool = false;
 
 
-    /* Déclaration des variables du timer */
+/* Déclaration des variables du timer */
 
 let timer = document.getElementById("tmp");
 
 
-let temps1 = 10;
+let temps1 = 180;
 
 
-let intervalle =1000;
+let intervalle = 1000;
 
 
 let b = 0;
@@ -43,7 +43,7 @@ let b = 0;
 let m = 0;
 
 
-    
+
 
 
 let paraquestion = document.createElement('p');
@@ -58,7 +58,7 @@ let listerep = document.createElement('div');
 function finDeJeu1() {
 
 
-    if(temps1 == 0){  
+    if (temps1 == 0) {
 
         window.alert('Fin de jeu');
 
@@ -67,41 +67,41 @@ function finDeJeu1() {
     }
 
 
-   
+
 }
 
-function time(){
-    if (bool == false){
+function time() {
+    if (bool == false) {
         DiminuerTemps1();
-        
-    }else{
+
+    } else {
         temps1 = temps1
     }
 
 }
 
 // bpause.addEventListener('click', function(){
-    
+
 //     if(bool==false){
 
 //         bool= true;
 //         bpause.innerHTML = 'Reprendre'
-        
-        
+
+
 
 //     }else{
 
 //         bool=false;
 //         bpause.innerHTML = 'Pause'
-        
+
 
 //     }
-    
+
 // })
 
-function fonctiontimer(){
+function fonctiontimer() {
 
-    timer.innerHTML =(temps1);
+    timer.innerHTML = (temps1);
 
     setInterval(time, intervalle); // diminuer le temps à chaque seconde
 
@@ -110,11 +110,11 @@ function fonctiontimer(){
 }
 
 
-function DiminuerTemps1 (){
+function DiminuerTemps1() {
 
     temps1--;
 
-    timer.innerHTML =(temps1);   
+    timer.innerHTML = (temps1);
 
     finDeJeu1();
 
@@ -124,18 +124,18 @@ let divbanniere = document.createElement('div');
 
 let banniere1 = document.createElement('p');
 
-  
 
-function banniere(){
 
-   
+function banniere() {
+
+
 
     document.body.appendChild(divbanniere);
 
     divbanniere.appendChild(banniere1);
 
 
-    banniere1.innerHTML = "Bonnes réponses : "+ b + " / " +  " Mauvaises réponses : "+ m;
+    banniere1.innerHTML = "Bonnes réponses : " + b + " / " + " Mauvaises réponses : " + m;
 
 }
 
@@ -149,38 +149,38 @@ window.localStorage.clear();
 
 
 
-function ajoutTemps(){
+function ajoutTemps() {
 
     b++; //bonne réponse
 
-    if(temps1 <= 176){
+    if (temps1 <= 176) {
 
-        temps1 = temps1+5;
+        temps1 = temps1 + 5;
 
-    }else if(temps1 == 179 ){
+    } else if (temps1 == 179) {
 
-        temps1= temps1+2;
+        temps1 = temps1 + 2;
 
-    }else if(temps1 == 178 ){
+    } else if (temps1 == 178) {
 
-        temps1= temps1+3;
+        temps1 = temps1 + 3;
 
-    }else if(temps1 == 177 ){
+    } else if (temps1 == 177) {
 
-        temps1= temps1+4;
+        temps1 = temps1 + 4;
 
     }
 
 }
 
-function perdTemps(){
+function perdTemps() {
 
 
     temps1 = temps1 - 1; // On enlève 2 seconde du point de vue de l'utilisateur
 
-                         // ensuite ajouter la fonction de fin de jeu une fois que le temps est est strictement inférieur à 0
+    // ensuite ajouter la fonction de fin de jeu une fois que le temps est est strictement inférieur à 0
 
-    m++;    //  mauvaise réponse
+    m++; //  mauvaise réponse
 
 }
 
@@ -202,108 +202,136 @@ function removeColor() {
 
 
 
-function abandon(){
+function abandon() {
 
-    temps1=1;       // 0 du point de vue de l'utilisateur
+    temps1 = 1; // 0 du point de vue de l'utilisateur
 
 }
 
 
-function abandonetpause(){
+function abandonetpause() {
 
     document.body.appendChild(giveUp);
 
     giveUp.innerHTML = "Abandonner"
 
-    giveUp.addEventListener('click',abandon)
+    giveUp.addEventListener('click', abandon)
 
 
     document.body.appendChild(bpause);
     bpause.innerHTML = 'Pause'
     fonctiontimer()
 
-   
+
+
 
 }
+let divreponse = document.createElement('div');
+
+let buttonrep1 = document.createElement('button');
+
+let buttonrep2 = document.createElement('button');
+
+let buttonrep3 = document.createElement('button');
+
+let buttonrep4 = document.createElement('button');
+
+bpause.addEventListener('click', function() {
+
+    if (bool == false) {
+
+        bool = true;
+        bpause.innerHTML = 'Reprendre'
+        console.log('MArche pas')
 
 
 
-function defi1(){
 
-    let tabrep = [];
+    } else if (bool == true) {
 
-    bpause.addEventListener('click', function(){
-    
-        if(bool==false){
-    
-            bool= true;
-            bpause.innerHTML = 'Reprendre'
-            
-    
-        }else{
-    
-            bool=false;
-            bpause.innerHTML = 'Pause'
-            
-    
-        }
-        
-    })
+        bool = false;
+        bpause.innerHTML = 'Pause'
+        reCall();
+        console.log('Marche')
 
 
-    function reCall(){
 
-        //let idpara = document.getElementById('parabanniere')
-
-
-        divreponse.remove();
-
-        divquestion.remove();
-
-        divbanniere.remove();
-
-        banniere();
-
-
-        defi1();
+    } else {
+        reCall();
 
     }
 
-    
-
-    regles.remove();    // supprime tout les éléments de la div regles
-
- 
+})
 
 
-    let numrandrep = Math.floor(Math.random()*tabrep.length);
+function reCall() {
+
+    //let idpara = document.getElementById('parabanniere')
+
+
+    divreponse.remove();
+
+    divquestion.remove();
+
+    divbanniere.remove();
+
+    banniere();
+
+    defi1()
+
+
+}
+
+function defi1() {
+
+    let tabrep = [];
+    bool = false;
+    console.clear();
+
+
+
+
+
+
+
+
+
+    regles.remove(); // supprime tout les éléments de la div regles
+
+
+
+
+    let numrandrep = Math.floor(Math.random() * tabrep.length);
 
     let randrep = tabrep[numrandrep];
 
- 
+
 
     /* definition du randrep correpodant à une réponse choisi au hasard */
 
 
-    let rand = Math.floor(Math.random()*allQuestions.length);
+    let rand = Math.floor(Math.random() * allQuestions.length);
 
 
-   
 
-    let divreponse = document.createElement('div');
+
+buttonrep1.style.background = 'white'
+buttonrep2.style.background = 'white'
+buttonrep3.style.background = 'white'
+buttonrep4.style.background = 'white'
 
 
     /* Création des boutons*/
 
 
-        /* bouton abandoner et pause*/
+    /* bouton abandoner et pause*/
 
 
-        
 
-    
 
-    let buttonrep1 = document.createElement('button');
+
+
+
 
     divreponse.appendChild(buttonrep1);
 
@@ -312,57 +340,59 @@ function defi1(){
 
 
 
-    let buttonrep2 = document.createElement('button');
+
 
     divreponse.appendChild(buttonrep2);
 
     tabrep.unshift('rep2')
 
 
-    let buttonrep3 = document.createElement('button');
+
 
     divreponse.appendChild(buttonrep3);
 
 
 
-    let buttonrep4 = document.createElement('button');
+
 
     divreponse.appendChild(buttonrep4);
 
 
 
-    if (allQuestions[rand].rep3 == undefined){
+    if (allQuestions[rand].rep3 == undefined) {
 
         buttonrep3.remove()
 
-     
 
-    }else{
+
+
+
+    } else {
 
         tabrep.unshift('rep3')
 
     }
 
 
-    if (allQuestions[rand].rep4 == undefined){
+    if (allQuestions[rand].rep4 == undefined) {
 
         buttonrep4.remove()
 
-    }else{
+    } else {
 
         tabrep.unshift('rep4')
 
     }
 
 
-    console.log('tableau: '+tabrep)
+    console.log('tableau: ' + tabrep)
+
 
 
     let quizz = allQuestions[rand].quizz;
 
 
 
-    
 
 
     document.body.appendChild(divquestion);
@@ -376,19 +406,19 @@ function defi1(){
 
 
 
-    for(let key in allQuestions[rand]){
+    for (let key in allQuestions[rand]) {
 
 
-        
+
 
         let goodrep = allQuestions[rand]["goodrep"];
 
 
-        
+
 
         //console.log(goodrep)
 
-        
+
 
         // if(key == "rep1" || key == "rep2" || key == "rep3" || key == "rep4"){
 
@@ -396,7 +426,7 @@ function defi1(){
 
         // }
 
-        
+
 
         //let repdefi1 = localStorage.getItem("i");
 
@@ -404,58 +434,56 @@ function defi1(){
 
 
 
-        if(key == "goodrep"){
+        if (key == "goodrep") {
 
             //console.log(allQuestions[rand][key])
 
-        }
-
-        else if(key == "rep1"){
-
-            
-
-            
-
-               
+        } else if (key == "rep1") {
 
 
-                buttonrep1.addEventListener('mouseover', giveColor);
-
-                buttonrep1.addEventListener('mouseout', removeColor);
 
 
-                buttonrep1.innerHTML = allQuestions[rand][key];
 
-                tabrep.pop(numrandrep);
 
-            
 
-            
 
-            if(key.charAt(3) == goodrep){
+            buttonrep1.addEventListener('mouseover', giveColor);
+
+            buttonrep1.addEventListener('mouseout', removeColor);
+
+
+            buttonrep1.innerHTML = allQuestions[rand][key];
+
+            tabrep.pop(numrandrep);
+
+
+
+
+
+            if (key.charAt(3) == goodrep) {
 
                 //console.log("Bonne réponse 1")
 
-                buttonrep1.addEventListener('click',ajoutTemps);
+                buttonrep1.addEventListener('click', ajoutTemps);
 
-                buttonrep1.addEventListener('click',reCall)
+                buttonrep1.addEventListener('click', reCall)
 
-            }else{
+            } else {
 
-                buttonrep1.addEventListener('click',perdTemps);
+                buttonrep1.addEventListener('click', perdTemps);
 
-                buttonrep1.addEventListener('click',reCall)
+                buttonrep1.addEventListener('click', reCall)
 
             }
 
-            console.log('m '+m);
+            console.log('m ' + m);
 
 
 
 
-        }else if(key == "rep2"){
+        } else if (key == "rep2") {
 
-            
+
 
 
             buttonrep2.addEventListener('mouseover', giveColor);
@@ -465,29 +493,29 @@ function defi1(){
 
             buttonrep2.innerHTML = allQuestions[rand][key];
 
-            
 
-            if(key.charAt(3) == goodrep){
 
-               // console.log("Bonne réponse 2")
+            if (key.charAt(3) == goodrep) {
 
-               buttonrep2.addEventListener('click',ajoutTemps);
+                // console.log("Bonne réponse 2")
 
-               buttonrep2.addEventListener('click',reCall)
+                buttonrep2.addEventListener('click', ajoutTemps);
 
-               
+                buttonrep2.addEventListener('click', reCall)
 
-            }else{
 
-                buttonrep2.addEventListener('click',perdTemps);
 
-                buttonrep2.addEventListener('click',reCall)
+            } else {
+
+                buttonrep2.addEventListener('click', perdTemps);
+
+                buttonrep2.addEventListener('click', reCall)
 
             }
 
-        }else if(key == "rep3"){
+        } else if (key == "rep3") {
 
-            
+
 
 
             buttonrep3.addEventListener('mouseover', giveColor);
@@ -498,36 +526,36 @@ function defi1(){
             buttonrep3.innerHTML = allQuestions[rand][key];
 
 
-     
 
-            
 
-        
 
-            if(key.charAt(3) == goodrep){
+
+
+
+            if (key.charAt(3) == goodrep) {
 
                 //console.log("Bonne réponse 3")
 
-                buttonrep3.addEventListener('click',ajoutTemps);
+                buttonrep3.addEventListener('click', ajoutTemps);
 
-                buttonrep3.addEventListener('click',reCall)
+                buttonrep3.addEventListener('click', reCall)
 
-                
 
-            }else{
 
-                buttonrep3.addEventListener('click',perdTemps);
+            } else {
 
-                buttonrep3.addEventListener('click',reCall)
+                buttonrep3.addEventListener('click', perdTemps);
+
+                buttonrep3.addEventListener('click', reCall)
 
 
             }
 
-        
 
-        }else if(key == "rep4"){
 
-            
+        } else if (key == "rep4") {
+
+
 
             buttonrep4.addEventListener('mouseover', giveColor);
 
@@ -537,34 +565,34 @@ function defi1(){
             buttonrep4.innerHTML = allQuestions[rand][key];
 
 
-   
 
-            if(key.charAt(3) == goodrep){
+
+            if (key.charAt(3) == goodrep) {
 
                 //console.log("Bonne réponse 4")
 
-                buttonrep4.addEventListener('click',ajoutTemps);
+                buttonrep4.addEventListener('click', ajoutTemps);
 
-                buttonrep4.addEventListener('click',reCall)
+                buttonrep4.addEventListener('click', reCall)
 
-            }else{
+            } else {
 
-                buttonrep4.addEventListener('click',perdTemps);
+                buttonrep4.addEventListener('click', perdTemps);
 
-                buttonrep4.addEventListener('click',reCall)
+                buttonrep4.addEventListener('click', reCall)
 
 
             }
 
-        
+
 
         }
 
-      
 
-        
-        
-    
+
+
+
+
 
 
 
@@ -586,14 +614,11 @@ function defi1(){
     // }
 
 
-} 
+}
 
-defiun.addEventListener('click',abandonetpause)
+defiun.addEventListener('click', abandonetpause)
 
-defiun.addEventListener('click',banniere);
-
-
-defiun.addEventListener('click',defi1);
+defiun.addEventListener('click', banniere);
 
 
-defiun.addEventListener('click',pause);
+defiun.addEventListener('click', defi1);
