@@ -1,8 +1,6 @@
 
 
 
-
-
 /*Déclaration des variables*/
 
 let defiun = document.getElementById("button1");
@@ -11,6 +9,7 @@ let regles = document.getElementById("regles");
 
 let divquestion1 = document.createElement('div');
 
+let center = document.querySelector("center");
 
 let allbutton = document.getElementsByTagName('button');
 
@@ -25,10 +24,12 @@ let giveUp = document.createElement('button');
 
 let bool = false;
 
+let tabquizz1 =[];
+
     /* Déclaration des variables du timer */
 let timer = document.getElementById("tmp");
 
-let temps1 = 7;
+let temps1 = 120;
 
 let intervalle =1000;
 let minutes ="02";
@@ -128,6 +129,7 @@ function DiminuerTemps1 (){
     
  
     temps1--;
+    console.log('test avant')
     window.localStorage.setItem('temps',temps1)
    // timer.innerHTML =(temps1);   
     minutes = parseInt(temps1 / 60, 10);
@@ -149,7 +151,7 @@ let banniere1 = document.createElement('p');
   
 function banniere(){
    
-    document.body.appendChild(divbanniere);
+    center.appendChild(divbanniere);
     divbanniere.appendChild(banniere1);
 
     banniere1.innerHTML = "Bonnes réponses : "+ b + " / " +  " Mauvaises réponses : "+ m;
@@ -187,19 +189,18 @@ function perdTemps(){
 
 
 
-function abandon(){
-    temps1=1;       // 0 du point de vue de l'utilisateur
-    giveUp.addEventListener('click',refresh)
-
+function abandon1(){
+    window.alert('Vous avez abandonnée.')
+    refresh();
 }
 
 
 function abandonetpause(){
-    document.body.appendChild(giveUp);
+    center.appendChild(giveUp);
     giveUp.innerHTML = "Abandonner"
-    giveUp.addEventListener('click',abandon)
+    giveUp.addEventListener('click',abandon1)
 
-    document.body.appendChild(bpause);
+    center.appendChild(bpause);
 
     bpause.innerHTML ="Pause"
     fonctiontimer();
@@ -235,12 +236,12 @@ function defi1(){
 
 
 
-buttonrep1.style.background = 'white'
-buttonrep2.style.background = 'white'
-buttonrep3.style.background = 'white'
-buttonrep4.style.background = 'white'
+    buttonrep1.style.background = 'white'
+    buttonrep2.style.background = 'white'
+    buttonrep3.style.background = 'white'
+    buttonrep4.style.background = 'white'
 
-   
+    
 
     /* Création des boutons*/
 
@@ -279,13 +280,20 @@ buttonrep4.style.background = 'white'
 
     let quizz = allQuestions[rand].quizz;
 
+    for (let i in tabquizz){
+        if (i==quizz){
+            quizz = allQuestions[rand].quizz;
+    }}
+    
+    tabquizz.unshift(quizz);
+    
 
     
 
-    document.body.appendChild(divquestion1);
+    center.appendChild(divquestion1);
     divquestion1.appendChild(paraquestion1);
 
-    document.body.appendChild(divreponse1);
+    center.appendChild(divreponse1);
     paraquestion1.innerHTML = quizz;
 
 
