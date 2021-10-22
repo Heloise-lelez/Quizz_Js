@@ -31,16 +31,24 @@ let bool = false;
 
 let timer = document.getElementById("tmp");
 
+let temps1 = 120
 
-let temps1 = 180;
+let minutes = 2
 
+let seconds = 0
+
+
+//let temps1 = 
 
 let intervalle = 1000;
 
 
+/* Compteur des bonnes/mauvaises réponses */
+
 let b = 0;
 
 let m = 0;
+
 
 
 
@@ -71,8 +79,11 @@ function finDeJeu1() {
 }
 
 function time() {
+   
     if (bool == false) {
+        
         DiminuerTemps1();
+    
 
     } else {
         temps1 = temps1
@@ -101,7 +112,8 @@ function time() {
 
 function fonctiontimer() {
 
-    timer.innerHTML = (temps1);
+
+    timer.innerHTML = minutes + ":" + seconds;
 
     setInterval(time, intervalle); // diminuer le temps à chaque seconde
 
@@ -111,10 +123,18 @@ function fonctiontimer() {
 
 
 function DiminuerTemps1() {
+    
 
     temps1--;
-
-    timer.innerHTML = (temps1);
+    minutes = parseInt(temps1 / 60, 10);
+    seconds = parseInt(temps1 % 60, 10);
+    if (minutes < 10){
+        minutes = "0" + minutes
+    }
+    if (seconds < 10){
+        seconds = "0" + seconds
+    }
+    timer.innerHTML = minutes + ":" + seconds;
 
     finDeJeu1();
 
@@ -287,12 +307,6 @@ function defi1() {
     let tabrep = [];
     bool = false;
     console.clear();
-
-
-
-
-
-
 
 
 
