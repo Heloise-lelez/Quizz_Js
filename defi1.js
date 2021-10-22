@@ -1,4 +1,4 @@
-
+/**/
 /*Déclaration des variables*/
 
 let defiun = document.getElementById("button1");

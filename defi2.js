@@ -5,7 +5,7 @@ let divreponse2 = document.createElement('div');
 
 let paraquestion2 = document.createElement('p');
 
-
+/**/
 
 
 
