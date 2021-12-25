@@ -16,6 +16,13 @@ let allbutton = document.getElementsByTagName('button');
 let defi1btn = document.querySelector("#button1")
 /*Création bouton*/
 
+
+/* Création bouton triche */
+
+
+
+
+
 let bpause = document.createElement('button');
 
 
@@ -219,6 +226,10 @@ function reCall(){
 
 function defi1(){
 
+    
+    
+
+
     let tabrep = [];
 
     
@@ -232,6 +243,7 @@ function defi1(){
     /* definition du randrep correpodant à une réponse choisi au hasard */
 
     let rand = Math.floor(Math.random()*allQuestions.length);
+
 
 
 
@@ -296,6 +308,7 @@ function defi1(){
     center.appendChild(divreponse1);
     paraquestion1.innerHTML = quizz;
 
+    let btntriche = document.createElement('button');
 
     for(let key in allQuestions[rand]){
 
@@ -312,10 +325,53 @@ function defi1(){
         //let repdefi1 = localStorage.getItem("i");
         //console.log(repdefi1)
 
+        center.appendChild(btntriche);
+        btntriche.innerHTML = "Triche"
+    
+        function reposition1(){
 
+            divreponse1.remove();
+        
+            let divTriche = document.createElement('div');
+            center.appendChild(divTriche);
+
+            if(key.charAt(3)==goodrep){
+
+            for (let key1 in allQuestions[rand]){
+                let buttonrep1 = document.createElement('button');
+
+                center.appendChild(buttonrep1);
+                buttonrep1.innerHTML = allQuestions[rand][key];
+                buttonrep1.addEventListener('click',defi1);
+
+                let buttonrep2 = document.createElement('button');
+                center.appendChild(buttonrep2);
+                buttonrep2.innerHTML = allQuestions[rand][key+1];
+                if(key1[2]!=undefined){
+                    let buttonrep3 = document.createElement('button');
+                    center.appendChild(buttonrep3);
+                    buttonrep3.innerHTML = allQuestions[rand][key];
+
+                }
+                
+                if(key1[3]!=undefined){
+                 let buttonrep4 = document.createElement('button');
+                 center.appendChild(buttonrep4);
+                 buttonrep4.innerHTML = allQuestions[rand][key];
+                }
+            }    
+   
+
+            
+
+            }
+            
+        }
    
        if(key == "rep1"){
             
+                btntriche.addEventListener('click',reposition1);
+
                 buttonrep1.addEventListener('mouseover', giveColor);
                 buttonrep1.addEventListener('mouseout', removeColor);
 
